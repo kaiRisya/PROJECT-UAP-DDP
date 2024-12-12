@@ -1787,8 +1787,7 @@ void magicsframe() {
 }
 
 //tampilan loading
-void loadingText(int x = 77, int y= 28){
-  initscr();
+void loadingText(int x, int y){
     curs_set(0);
     noecho();
     mvprintw(y,x, "L");
@@ -1821,7 +1820,26 @@ void loadingText(int x = 77, int y= 28){
         refresh();
         Sleep(30);
     }
-    endwin();
+}
+
+void pressKey(int x,int y){
+    mvprintw(y+2,x - 4,"press any key to continue . . .");
+    getch();
+}
+
+void loadingAuto(int x, int y){
+    loadingText(x,y);
+    Sleep(100);
+    curs_set(1);
+    echo();
+}
+
+void loadingClick(int x, int y){
+    loadingText(x,y);
+    Sleep(50);
+    pressKey(x,y);
+    curs_set(1);
+    echo();
 }
 
 //tampilan pada menu login
