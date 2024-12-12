@@ -1827,49 +1827,65 @@ void loadingText(int x = 77, int y= 28){
 //tampilan pada menu login
 
 void boxMenu(){
-    printOut(9,30,"__||___________________________________________________||__");
-    printOut(10,30,"  ||                                                   ||  ");
-    printOut(11,30,"  ||               SELAMAT DATANG DI GAME              ||  ");
-    printOut(12,30,"  ||                THE MAGE OF DARKNESS               ||  ");
-    printOut(13,30,"  ||                                                   ||  ");
-    printOut(14,30,"  ||               ______________________              ||  ");
-    printOut(15,30,"  ||              ||                    ||             ||  ");
-    printOut(16,30,"  ||              ||     LOGIN          ||             ||  ");
-    printOut(17,30,"  ||              ||     BUAT AKUN      ||             ||  ");
-    printOut(18,30,"  ||              ||     KELUAR         ||             ||  ");
-    printOut(19,30,"  ||              ||____________________||             ||  ");
-    printOut(20,30,"__||___________________________________________________||__");
-    printOut(21,30,"  ||                 TEKAN 1, 2, ATAU 3                ||  ");
+    mvprintw(9,30,"__||___________________________________________________||__");
+    mvprintw(10,30,"  ||                                                   ||  ");
+    mvprintw(11,30,"  ||               SELAMAT DATANG DI GAME              ||  ");
+    mvprintw(12,30,"  ||                THE MAGE OF DARKNESS               ||  ");
+    mvprintw(13,30,"  ||                                                   ||  ");
+    mvprintw(14,30,"  ||               ______________________              ||  ");
+    mvprintw(15,30,"  ||              ||                    ||             ||  ");
+    mvprintw(16,30,"  ||              ||     LOGIN          ||             ||  ");
+    mvprintw(17,30,"  ||              ||     BUAT AKUN      ||             ||  ");
+    mvprintw(18,30,"  ||              ||     KELUAR         ||             ||  ");
+    mvprintw(19,30,"  ||              ||____________________||             ||  ");
+    mvprintw(20,30,"__||___________________________________________________||__");
+    mvprintw(21,30,"  ||                 TEKAN 1, 2, ATAU 3                ||  ");
 }
 
 void boxSignUp(){
-    printOut(9,30,"__||___________________________________________________||__");
-    printOut(10,30,"  ||                                                   ||  ");
-    printOut(11,30,"  ||                      BUAT AKUN                    ||  ");
-    printOut(12,30,"  ||                                                   ||  ");
-    printOut(13,30,"  ||            Username :                             ||  ");
-    printOut(14,30,"  ||            (Username hanya berupa huruf)          ||  ");
-    printOut(15,30,"  ||                                                   ||  ");
-    printOut(16,30,"  ||            Password :                             ||  ");
-    printOut(17,30,"  ||            (Password hanya berupa angka)          ||  ");
-    printOut(18,30,"  ||                                                   ||  ");
-    printOut(19,30,"  ||                                                   ||  ");
-    printOut(20,30,"__||___________________________________________________||__");
-    printOut(21,30,"  ||                                                   ||  ");
+    mvprintw(9,30,"__||___________________________________________________||__");
+    mvprintw(10,30,"  ||                                                   ||  ");
+    mvprintw(11,30,"  ||                      BUAT AKUN                    ||  ");
+    mvprintw(12,30,"  ||                                                   ||  ");
+    mvprintw(13,30,"  ||            Username :                             ||  ");
+    mvprintw(14,30,"  ||            (Username hanya berupa huruf)          ||  ");
+    mvprintw(15,30,"  ||                                                   ||  ");
+    mvprintw(16,30,"  ||            Password :                             ||  ");
+    mvprintw(17,30,"  ||            (Password hanya berupa angka)          ||  ");
+    mvprintw(18,30,"  ||                                                   ||  ");
+    mvprintw(19,30,"  ||                                                   ||  ");
+    mvprintw(20,30,"__||___________________________________________________||__");
+    mvprintw(21,30,"  ||                                                   ||  ");
 }
 
 void boxSignIn(){
-    printOut(9,30,"__||___________________________________________________||__");
-    printOut(10,30,"  ||                                                   ||  ");
-    printOut(11,30,"  ||                        LOGIN                      ||  ");
-    printOut(12,30,"  ||                                                   ||  ");
-    printOut(13,30,"  ||            Username :                             ||  ");
-    printOut(14,30,"  ||                                                   ||  ");
-    printOut(15,30,"  ||                                                   ||  ");
-    printOut(16,30,"  ||            Password :                             ||  ");
-    printOut(17,30,"  ||                                                   ||  ");
-    printOut(18,30,"  ||  (Pastikan username dan password sudah benar ya)  ||  ");
-    printOut(19,30,"  ||                                                   ||  ");
-    printOut(20,30,"__||___________________________________________________||__");
-    printOut(21,30,"  ||                                                   ||  ");
+    mvprintw(9,30,"__||___________________________________________________||__");
+    mvprintw(10,30,"  ||                                                   ||  ");
+    mvprintw(11,30,"  ||                        LOGIN                      ||  ");
+    mvprintw(12,30,"  ||                                                   ||  ");
+    mvprintw(13,30,"  ||            Username :                             ||  ");
+    mvprintw(14,30,"  ||                                                   ||  ");
+    mvprintw(15,30,"  ||                                                   ||  ");
+    mvprintw(16,30,"  ||            Password :                             ||  ");
+    mvprintw(17,30,"  ||                                                   ||  ");
+    mvprintw(18,30,"  ||  (Pastikan username dan password sudah benar ya)  ||  ");
+    mvprintw(19,30,"  ||                                                   ||  ");
+    mvprintw(20,30,"__||___________________________________________________||__");
+    mvprintw(21,30,"  ||                                                   ||  ");
+}
+
+void loginDoneText(){
+    mvprintw(9,38," __        ______     _______  __  .__   __.");
+    mvprintw(10,38,"|  |      /  __  \\   /  _____||  | |  \\ |  |");
+    mvprintw(11,38,"|  |     |  |  |  | |  |  __  |  | |   \\|  |");
+    mvprintw(12,38,"|  |     |  |  |  | |  | |_ | |  | |  . `  |");
+    mvprintw(13,38,"|  `----.|  `--'  | |  |__| | |  | |  |\\   |");
+    mvprintw(14,38,"|_______| \\______/   \\______| |__| |__| \\__|");
+    mvprintw(15,38,"");
+    mvprintw(16,18,".______    _______ .______       __    __       ___           _______. __   __      ");
+    mvprintw(17,18,"|   _  \\  |   ____||   _  \\     |  |  |  |     /   \\         /       ||  | |  |     ");
+    mvprintw(18,18,"|  |_)  | |  |__   |  |_)  |    |  |__|  |    /  ^  \\       |   (----`|  | |  |     ");
+    mvprintw(19,18,"|   _  <  |   __|  |      /     |   __   |   /  /_\\  \\       \\   \\    |  | |  |     ");
+    mvprintw(20,18,"|  |_)  | |  |____ |  |\\  \\----.|  |  |  |  /  _____  \\  .----)   |   |  | |  `----.");
+    mvprintw(21,18,"|______/  |_______|| _| `._____||__|  |__| /__/     \\__\\ |_______/    |__| |_______|");
 }
