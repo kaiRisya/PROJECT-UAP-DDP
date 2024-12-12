@@ -6,4 +6,4 @@ Bachtiar Nugraha
 </br>Khaila Noverisya Nurdi
 
 ## Terima Kasih !!
-![](https://github.com/BachtiarNugrahaAjalah/GIF-/blob/main/896532874252128267.gif)
+![](https://github.com/BachtiarNugrahaAjalah/GIF-/blob/main/910275450750775316.gif)
