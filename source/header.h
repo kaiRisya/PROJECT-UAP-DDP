@@ -183,20 +183,29 @@ void opsiPlay(){
 void choicesinfo() {
   clear();
   refresh();
-  if (specialtracker == 0) {
+  if (specialtracker == 1) {
     slashesframe();
-    enemyhp -= (playerattack - enemydefense);
+    enemyhp -= defenseattre * -1 + (playerattack - enemydefense);
+    defenseattre = 0;
     switch (battlemodifierA) {
     case 'A':
       chat(20, 20, "Kau menyerang musuhmu dengan sabit dan kapak besi!", 10);
       break;
     }
-  } else if (specialtracker == 1) {
+  } else if (specialtracker == 2) {
     magicsframe();
-    enemyhp -= (3 * playerattack - enemydefense);
+    enemyhp -= defenseattre * -1 + (3 * playerattack - enemydefense);
+    defenseattre = 0;
     switch (battlemodifierA) {
     case 'A':
       chat(20, 20, "Kau menyerang musuhmu dengan sihir!", 10);
+      break;
+    }
+  } else if (specialtracker == 3) {
+    defenseattr = 2;
+    switch (battlemodifierA) {
+    case 'A':
+      chat(20, 20, "Kau bertahan!", 10);
       break;
     }
   }
@@ -281,12 +290,13 @@ void playerturn() {
 }
 
 void enemyattacks() {
-  playerhp -= (enemyattack - playerdefense);
+  playerhp -= defenseattr * -1 + (enemyattack - playerdefense);
   switch (battlemodifierB) {
   case 'Q':
     chat(20, 20, "Musuh menyerangmu dengan tangan jeraminya!", 10);
     break;
   }
+  defenseattr = 0;
   mvprintw(22, 20, "Player HP %d", playerhp);
   mvprintw(24, 20, "[PRESS ANY BUTTON]");
   refresh();
@@ -296,12 +306,13 @@ void enemyattacks() {
 }
 
 void enemymagics() {
-  playerhp -= (enemyattack - playerdefense);
+  playerhp -= defenseattr * -1 + (enemyattack - playerdefense);
   switch (battlemodifierB) {
   case 'Q':
     chat(20, 20, "Musuh menyerangmu dengan sihir angin!", 10);
     break;
   }
+  defenseattr = 0;
   mvprintw(22, 20, "Player HP %d", playerhp);
   mvprintw(24, 20, "[PRESS ANY BUTTON]");
   refresh();
@@ -311,12 +322,13 @@ void enemymagics() {
 }
 
 void enemydefenses() {
-  playerhp -= (enemyattack);
+  defenseattre = 2;
   switch (battlemodifierB) {
   case 'Q':
     chat(20, 20, "Musuh bertahan!", 10);
     break;
   }
+  defenseattr = 0;
   mvprintw(22, 20, "Player HP %d", playerhp);
   mvprintw(24, 20, "[PRESS ANY BUTTON]");
   refresh();
@@ -326,12 +338,13 @@ void enemydefenses() {
 }
 
 void enemyultimate() {
-  playerhp -= (2 * enemyattack - playerdefense);
+  playerhp -= defenseattr * -1 + (2 * enemyattack - playerdefense);
   switch (battlemodifierB) {
   case 'Q':
     chat(20, 20, "Musuh menyerangmu dengan kekuatan maksimal!", 10);
     break;
   }
+  defenseattr = 0;
   mvprintw(22, 20, "Player HP %d", playerhp);
   mvprintw(24, 20, "[PRESS ANY BUTTON]");
   refresh();
