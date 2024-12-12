@@ -9,6 +9,33 @@
 
 using namespace std;
 
+//-----------------Prototype-----------------//
+void stopmusic();
+void playmusic(const char * musicFile, DWORD flags = SND_ASYNC | SND_LOOP);
+void print_menu(WINDOW * menu_win, int pilihanTerpilih, const char * opsi[], int jumlahopsi);
+void choicesinfo();
+
+//-----------------Prototype Menu-----------------//
+void opsiLogin();
+void opsiPlay();
+void singIn();
+void singUp();
+
+//-----------------Prototype Battle-----------------//
+void resethealth();
+void playerturn();
+void battlesystem();
+void checkbattle();
+void randomattack();
+void enemyultimate();
+void enemyattacks();
+void enemymagics();
+void enemydefenses();
+
+void resethealth() {
+  playerhp = 100;
+  enemyhp = 100;
+}
 
 void playmusic(const char * musicFile, DWORD flags = SND_ASYNC | SND_LOOP) {
   PlaySound(TEXT(musicFile), NULL, flags);
@@ -34,84 +61,7 @@ void print_menu(WINDOW * menu_win, int pilihanTerpilih, const char * opsi[], int
   wrefresh(menu_win);
 }
 
-// function untuk battle
-
-void playerturn() {
-  initscr();
-  clear();
-  noecho();
-  cbreak();
-
-  int awalx = 20, awaly = 30;
-  int lebar = 30, tinggi = 20;
-
-  WINDOW * menu_win = newwin(tinggi, lebar, awaly, awalx);
-
-  keypad(menu_win, TRUE);
-
-  const char * opsi[] = {
-    "Attack",
-    "Magic",
-    "Defense"
-  };
-
-  int jumlahopsi = sizeof(opsi) / sizeof(char * );
-  int pilihanTerpilih = 0;
-  int pilihan = -1;
-
-  curs_set(0);
-  while (1) {
-    mvwprintw(menu_win, 0, 0, "Pilih Strategimu !!!");
-    print_menu(menu_win, pilihanTerpilih, opsi, jumlahopsi);
-
-    int tombol = wgetch(menu_win);
-
-    switch (tombol) {
-    case KEY_UP:
-      if (pilihanTerpilih == 0) {
-        pilihanTerpilih = jumlahopsi - 1;
-      } else {
-        --pilihanTerpilih;
-      }
-      break;
-
-    case KEY_DOWN:
-      if (pilihanTerpilih == jumlahopsi - 1) {
-        pilihanTerpilih = 0;
-      } else {
-        ++pilihanTerpilih;
-      }
-      break;
-
-    case 10:
-      pilihan = pilihanTerpilih;
-      break;
-    }
-
-    clrtoeol();
-    refresh();
-
-    if (pilihan == 0) {
-      specialtracker = 0;
-      choicesinfo();
-      break;
-    } else if (pilihan == 1) {
-      specialtracker = 1;
-      choicesinfo();
-      break;
-    } else if (pilihan == 2) {
-      specialtracker = 2;
-      break;
-    }
-  }
-
-}
-
 //login
-void singIn();
-void singUp();
-void opsiPlay();
-
 void opsiLogin(){
     initscr();
     clearScreen();
@@ -228,4 +178,205 @@ void opsiPlay(){
         nocbreak();
         opsiLogin();
     }
+}
+
+void choicesinfo() {
+  clear();
+  refresh();
+  if (specialtracker == 0) {
+    slashesframe();
+    enemyhp -= (playerattack - enemydefense);
+    switch (battlemodifierA) {
+    case 'A':
+      chat(20, 20, "Kau menyerang musuhmu dengan sabit dan kapak besi!", 10);
+      break;
+    }
+  } else if (specialtracker == 1) {
+    magicsframe();
+    enemyhp -= (3 * playerattack - enemydefense);
+    switch (battlemodifierA) {
+    case 'A':
+      chat(20, 20, "Kau menyerang musuhmu dengan sihir!", 10);
+      break;
+    }
+  }
+  mvprintw(22, 20, "Enemy HP %d", enemyhp);
+  mvprintw(24, 20, "[PRESS ANY BUTTON]");
+  refresh();
+  getch();
+  clear();
+  refresh();
+}
+
+// function untuk battle
+void playerturn() {
+  initscr();
+  clear();
+  noecho();
+  cbreak();
+
+  int awalx = 20, awaly = 30;
+  int lebar = 30, tinggi = 20;
+
+  WINDOW * menu_win = newwin(tinggi, lebar, awaly, awalx);
+
+  keypad(menu_win, TRUE);
+
+  const char * opsi[] = {
+    "Attack",
+    "Magic",
+    "Defense"
+  };
+
+  int jumlahopsi = sizeof(opsi) / sizeof(char * );
+  int pilihanTerpilih = 0;
+  int pilihan = -1;
+
+  curs_set(0);
+  while (1) {
+    mvwprintw(menu_win, 0, 0, "Pilih Strategimu !!!");
+    print_menu(menu_win, pilihanTerpilih, opsi, jumlahopsi);
+
+    int tombol = wgetch(menu_win);
+
+    switch (tombol) {
+    case KEY_UP:
+      if (pilihanTerpilih == 0) {
+        pilihanTerpilih = jumlahopsi - 1;
+      } else {
+        --pilihanTerpilih;
+      }
+      break;
+
+    case KEY_DOWN:
+      if (pilihanTerpilih == jumlahopsi - 1) {
+        pilihanTerpilih = 0;
+      } else {
+        ++pilihanTerpilih;
+      }
+      break;
+
+    case 10:
+      pilihan = pilihanTerpilih;
+      break;
+    }
+
+    clrtoeol();
+    refresh();
+
+    if (pilihan == 0) {
+      specialtracker = 0;
+      choicesinfo();
+      break;
+    } else if (pilihan == 1) {
+      specialtracker = 1;
+      choicesinfo();
+      break;
+    } else if (pilihan == 2) {
+      specialtracker = 2;
+      break;
+    }
+  }
+
+}
+
+void enemyattacks() {
+  playerhp -= (enemyattack - playerdefense);
+  switch (battlemodifierB) {
+  case 'Q':
+    chat(20, 20, "Musuh menyerangmu dengan tangan jeraminya!", 10);
+    break;
+  }
+  mvprintw(22, 20, "Player HP %d", playerhp);
+  mvprintw(24, 20, "[PRESS ANY BUTTON]");
+  refresh();
+  getch();
+  clear();
+  refresh();
+}
+
+void enemymagics() {
+  playerhp -= (enemyattack - playerdefense);
+  switch (battlemodifierB) {
+  case 'Q':
+    chat(20, 20, "Musuh menyerangmu dengan sihir angin!", 10);
+    break;
+  }
+  mvprintw(22, 20, "Player HP %d", playerhp);
+  mvprintw(24, 20, "[PRESS ANY BUTTON]");
+  refresh();
+  getch();
+  clear();
+  refresh();
+}
+
+void enemydefenses() {
+  playerhp -= (enemyattack);
+  switch (battlemodifierB) {
+  case 'Q':
+    chat(20, 20, "Musuh bertahan!", 10);
+    break;
+  }
+  mvprintw(22, 20, "Player HP %d", playerhp);
+  mvprintw(24, 20, "[PRESS ANY BUTTON]");
+  refresh();
+  getch();
+  clear();
+  refresh();
+}
+
+void enemyultimate() {
+  playerhp -= (2 * enemyattack - playerdefense);
+  switch (battlemodifierB) {
+  case 'Q':
+    chat(20, 20, "Musuh menyerangmu dengan kekuatan maksimal!", 10);
+    break;
+  }
+  mvprintw(22, 20, "Player HP %d", playerhp);
+  mvprintw(24, 20, "[PRESS ANY BUTTON]");
+  refresh();
+  getch();
+  clear();
+  refresh();
+}
+
+void randomattack() {
+  int randomize = rand() % 100;
+
+  if (randomize < 30) {
+    enemyattacks();
+  } else if (randomize < 60) {
+    enemymagics();
+  } else if (randomize < 80) {
+    enemydefenses();
+  } else {
+    enemyultimate();
+  }
+}
+
+void checkbattle() {
+  if (playerhp < enemyhp) {
+    chat(20, 20, "You Lose", 95);
+    chat(22, 20, "[PRESS ENTER]", 95);
+    refresh();
+    getch();
+    refresh();
+    clear();
+    specialtracker2 = 1;
+  } else if (playerhp > enemyhp) {
+    specialtracker2 = 0;
+    chat(20, 20, "You Won!", 95);
+    chat(22, 20, "[PRESS ENTER]", 95);
+    refresh();
+    getch();
+    refresh();
+    clear();
+  }
+}
+
+void battlesystem() {
+  while (playerhp > 0 && enemyhp > 0) {
+    playerturn();
+    randomattack();
+  }
 }
